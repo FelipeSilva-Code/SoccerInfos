@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
+
   return (
     <main className="flex min-h-screen flex-col items-center">
       <nav className="bg-neutral-500 w-full px-10 py-3 flex justify-between items-center">
@@ -17,7 +18,7 @@ export default function Home() {
 
       {/* USAR O LUCIDE PARA OS ICONS */}
       
-      <div className="grid grid-cols-5 w-4/5">
+      <div  className="grid-rows-5 ">
         <TeamInfos 
           nome="Celtic"
           foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
