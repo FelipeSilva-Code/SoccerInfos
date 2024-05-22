@@ -1,126 +1,39 @@
-import TeamInfos from "@/app/components/club";
-import Image from "next/image";
-import Link from "next/link";
+"use client";
 
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center">
-      <nav className="bg-neutral-500 w-full px-10 py-3 flex justify-between items-center">
-        <h1 className="text-2xl uppercase font-bold text-orange-400">Football Infos</h1>
-        <Link href="sobre">Sobre</Link>
-      </nav>
+import TeamInfos from "@/app/components/teamInfos";
+import MainContainer from "./components/mainContainer";
+import { useEffect } from "react";
+import { useTeamContext } from "../app/context/Hooks/UseTeamContext";
 
-      <div className="flex w-full items-center justify-center mt-6">
-        <input  className="rounded border-none w-96 pl-1 h-8" type="text" placeholder="Time"/>
-        <button className="bg-orange-400 w-40 ml-2 h-8 rounded">Procurar</button>
-      </div>
+export default function Home() {  
 
+  
+  const {resultSearch} = useTeamContext();
+
+  useEffect(() => {
+    
+  }, [resultSearch])
+    
+  return (   
+    <MainContainer>
       {/* USAR O LUCIDE PARA OS ICONS */}
       
-      <div className="grid grid-cols-5 w-4/5">
-        <TeamInfos 
-          nome="Celtic"
-          foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
-          fundacao={1996}/>
-
-        <TeamInfos 
-          nome="Celtic"
-          foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
-          fundacao={1996}/>
-
+      <div className="grid grid-cols-5 w-full pl-4 pr-4">
+        {resultSearch?.map(x => (
           <TeamInfos 
-          nome="Celtic"
-          foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
-          fundacao={1996}/>
-
-        <TeamInfos 
-          nome="Celtic"
-          foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
-          fundacao={1996}/>
-
-        <TeamInfos 
-          nome="Celtic"
-          foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
-          fundacao={1996}/>
-
-        <TeamInfos 
-          nome="Celtic"
-          foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
-          fundacao={1996}/>
-
-        <TeamInfos 
-          nome="Celtic"
-          foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
-          fundacao={1996}/>
-
-<TeamInfos 
-          nome="Celtic"
-          foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
-          fundacao={1996}/>
-
-<TeamInfos 
-          nome="Celtic"
-          foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
-          fundacao={1996}/>
-
-<TeamInfos 
-          nome="Celtic"
-          foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
-          fundacao={1996}/>
-
-<TeamInfos 
-          nome="Celtic"
-          foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
-          fundacao={1996}/>
-
-<TeamInfos 
-          nome="Celtic"
-          foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
-          fundacao={1996}/>
-
-<TeamInfos 
-          nome="Celtic"
-          foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
-          fundacao={1996}/>
-
-
-<TeamInfos 
-          nome="Celtic"
-          foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
-          fundacao={1996}/>
-
-<TeamInfos 
-          nome="Celtic"
-          foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
-          fundacao={1996}/>
-
-<TeamInfos 
-          nome="Celtic"
-          foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
-          fundacao={1996}/>
-
-<TeamInfos 
-          nome="Celtic"
-          foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
-          fundacao={1996}/>
-
-<TeamInfos 
-          nome="Celtic"
-          foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
-          fundacao={1996}/>
-
-<TeamInfos 
-          nome="Celtic"
-          foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
-          fundacao={1996}/>
-
-<TeamInfos 
-          nome="Celtic"
-          foto="https://cdn.sportmonks.com/images/soccer/teams/21/53.png"
-          fundacao={1996}/>
-
+            key={x.id}
+            name={x.name}
+            logo={x.logo}
+            founded={x.founded}
+            id={x.id}
+            country={x.country}
+            city={x.city}/>
+        ))}
       </div>
-    </main>
+      
+
+    </MainContainer>
+
   );
 }
 
