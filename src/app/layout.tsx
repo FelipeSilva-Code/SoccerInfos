@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import {TeamProvider } from "./context/TeamContext";
+import { SquadProvider } from "./context/SquadContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <TeamProvider>
-        <body className={inter.className}>{children}</body>
+        <SquadProvider>
+          <body className={inter.className}>{children}</body>
+        </SquadProvider>
       </TeamProvider>
     </html>
   );

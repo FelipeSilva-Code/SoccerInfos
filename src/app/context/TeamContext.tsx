@@ -9,7 +9,7 @@ interface TeamContextType {
     selectedTeam: Team | null;
     setSelectedTeam: (team: Team) => void;
     resultSearch: Team[] | null;
-    getTeams: (name: string) => void;
+    getTeamsAsync: (name: string) => void;
 }
 
 export const TeamContext = createContext<TeamContextType | undefined>(undefined);
@@ -19,9 +19,9 @@ export const TeamProvider = ({ children }: { children: ReactNode }) => {
     const [selectedTeam, setSelectedTeam] = useState<Team | null>(null);
     const [resultSearch, setResultSearch] = useState<Team[] | null>(null);
     
-    const getTeams = async (name : string) =>
+    const getTeamsAsync = async (name : string) =>
     {
-        var result = await ApiFootballService.getFootballTeamsByNameAsync(name);
+        var result = await ApiFootballService.getTeamsByNameAsync(name);
         if(result.results > 0)
         {
             var mappedArray = result.response.map((team: any) => mapToTeam(team));
@@ -44,7 +44,7 @@ export const TeamProvider = ({ children }: { children: ReactNode }) => {
 
 
     return (
-      <TeamContext.Provider value={{ selectedTeam, setSelectedTeam, getTeams, resultSearch }}>
+      <TeamContext.Provider value={{ selectedTeam, setSelectedTeam, getTeamsAsync, resultSearch }}>
         {children}
       </TeamContext.Provider>
     );

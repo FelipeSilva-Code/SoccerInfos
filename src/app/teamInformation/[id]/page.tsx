@@ -5,6 +5,7 @@ import PlayerCard from "@/app/components/playerCard";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { useTeamContext } from "@/app/context/Hooks/UseTeamContext";
+import { useSquadContext } from "@/app/context/Hooks/UseSquadContext";
 
 interface Props {
     params: {id: number}
@@ -13,13 +14,17 @@ interface Props {
 export default function TeamInformation ({ params } : Props) {
 
     const {selectedTeam} = useTeamContext();
+    const {getSquadAsync, setSquad, squadSelected} = useSquadContext();
 
     const router = useRouter();
     
     useEffect(() => {
-        if (!selectedTeam) {
+        setSquad();
+    
+        if (!selectedTeam)
             router.push('/');
-        }
+    
+        getSquadAsync(params.id);
     }, [selectedTeam]);
       
     return(
@@ -41,110 +46,22 @@ export default function TeamInformation ({ params } : Props) {
             </div>
 
             <div className="flex flex-col w-full text-black p-12">
-                    <h3 className="text-2xl uppercase ml-12 text-center">Squad</h3>
+                <h3 className="text-2xl uppercase ml-12 text-center">Squad</h3>
                 
+                {squadSelected?.Players && 
                     <div className="grid grid-cols-6 ">
-                        <PlayerCard 
-                            id = {882}
-                            name= "David de Gea"
-                            age= {31}
-                            number={1} 
-                            position= "Goalkeeper"
-                            photo="https://media.api-sports.io/football/players/882.png"
-                        />   
-
-                         <PlayerCard 
-                            id = {882}
-                            name= "David de Gea"
-                            age= {31}
-                            number={1} 
-                            position= "Goalkeeper"
-                            photo="https://media.api-sports.io/football/players/882.png"
-                        />   
-
-                         <PlayerCard 
-                            id = {882}
-                            name= "David de Gea"
-                            age= {31}
-                            number={1} 
-                            position= "Goalkeeper"
-                            photo="https://media.api-sports.io/football/players/882.png"
-                        />   
-
-                         <PlayerCard 
-                            id = {882}
-                            name= "David de Gea"
-                            age= {31}
-                            number={1} 
-                            position= "Goalkeeper"
-                            photo="https://media.api-sports.io/football/players/882.png"
-                        />   
-
-
-                         <PlayerCard 
-                            id = {882}
-                            name= "David de Gea"
-                            age= {31}
-                            number={1} 
-                            position= "Goalkeeper"
-                            photo="https://media.api-sports.io/football/players/882.png"
-                        />   
-
-                         <PlayerCard 
-                            id = {882}
-                            name= "David de Gea"
-                            age= {31}
-                            number={1} 
-                            position= "Goalkeeper"
-                            photo="https://media.api-sports.io/football/players/882.png"
-                        />   
-
-                         <PlayerCard 
-                            id = {882}
-                            name= "David de Gea"
-                            age= {31}
-                            number={1} 
-                            position= "Goalkeeper"
-                            photo="https://media.api-sports.io/football/players/882.png"
-                        />   
-
-                         <PlayerCard 
-                            id = {882}
-                            name= "David de Gea"
-                            age= {31}
-                            number={1} 
-                            position= "Goalkeeper"
-                            photo="https://media.api-sports.io/football/players/882.png"
-                        />   
-
-                         <PlayerCard 
-                            id = {882}
-                            name= "David de Gea"
-                            age= {31}
-                            number={1} 
-                            position= "Goalkeeper"
-                            photo="https://media.api-sports.io/football/players/882.png"
-                        />   
-
-                         <PlayerCard 
-                            id = {882}
-                            name= "David de Gea"
-                            age= {31}
-                            number={1} 
-                            position= "Goalkeeper"
-                            photo="https://media.api-sports.io/football/players/882.png"
-                        />   
-
-                         <PlayerCard 
-                            id = {882}
-                            name= "David de Gea"
-                            age= {31}
-                            number={1} 
-                            position= "Goalkeeper"
-                            photo="https://media.api-sports.io/football/players/882.png"
-                        />   
-                    </div>
-                 </div>   
+                        {squadSelected.Players.map(x => (
+                            <PlayerCard 
+                                id = {x.id}
+                                name= {x.name}
+                                age= {x.age}
+                                number={x.number} 
+                                position= {x.position}
+                                photo={x.photo}/>  
+                        ))} 
+                    </div>    
+                }      
+            </div>   
 
         </MainContainer>
     )

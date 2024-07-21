@@ -1,8 +1,11 @@
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Team from "../interfaces/Team";
 import { TeamContext } from "@/app/context/TeamContext";
+import React from "react";
+import LazyImage from "./lazyImage";
 
+  
 export default function TeamInfos(props : Team){
     const context = useContext(TeamContext);
 
@@ -37,7 +40,7 @@ export default function TeamInfos(props : Team){
             onMouseLeave={() => setHover(false)}
             onClick={handleClick}>
 
-            <img width="100px"  src={props.logo} alt="foto-club"/>
+            <LazyImage width={100} src={props.logo} />
             <h4>{props.name}</h4>
             <h4>Country: {props.country ?? "Not Informed"}</h4>
             <h4>Founded: {props.founded ?? "Not Informed"}</h4>

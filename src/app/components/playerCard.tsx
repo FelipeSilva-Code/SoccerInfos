@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Player from "../interfaces/Player";
-
+import LazyImage from "./lazyImage";
 
 export default function PlayerCard (props : Player) {
 
@@ -29,7 +29,7 @@ export default function PlayerCard (props : Player) {
         <div style={{ ...cardStyle, ...(hover ? cardHoverStyle : {}) }}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}>
-            <img width="80px" src={props.photo}/>
+            <LazyImage width={80} src={props.photo}/>
 
             <div> 
                 <p>{props.name}</p>

@@ -6,11 +6,11 @@ export default function SearchTeam () {
     const [name, setName] = useState("");
 
 
-    const { getTeams } = useTeamContext();
+    const { getTeamsAsync } = useTeamContext();
 
     const procurarTime = () => 
     {
-        getTeams(name);
+        getTeamsAsync(name);
     }
     
     return (

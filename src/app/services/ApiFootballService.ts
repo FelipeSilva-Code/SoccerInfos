@@ -11,9 +11,16 @@ const api = axios.create({
 
 
 export default class ApiFootballService {
-    static async getFootballTeamsByNameAsync(nome : string) : Promise<any>  
+    
+    static async getTeamsByNameAsync(nome : string) : Promise<any>  
     {
-        var resp = await api.get("teams?search=" + nome);
-        return resp.data;
+        var apiResponse = await api.get(`teams?search=${nome}`);
+        return apiResponse.data;
+    }
+
+    static async getSquadAsync(teamId : number) : Promise<any>
+    {
+        var apiResponse = await api.get(`players/squads?team=${teamId}`);
+        return apiResponse.data;
     }
 }

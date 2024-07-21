@@ -7,7 +7,6 @@ import { useTeamContext } from "../app/context/Hooks/UseTeamContext";
 
 export default function Home() {  
 
-  
   const {resultSearch} = useTeamContext();
 
   useEffect(() => {
@@ -30,8 +29,6 @@ export default function Home() {
             city={x.city}/>
         ))}
       </div>
-      
-
     </MainContainer>
 
   );
